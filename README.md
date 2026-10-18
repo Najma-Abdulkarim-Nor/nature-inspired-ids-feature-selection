@@ -7,7 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-Random%20Forest-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](notebooks/nature_inspired_feature_selection.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<your-username>/nature-inspired-ids-feature-selection/blob/main/notebooks/nature_inspired_feature_selection.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/blob/main/notebooks/nature_inspired_feature_selection.ipynb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 [Paper (PDF)](docs/paper.pdf) · [Slides (PDF)](docs/presentation.pdf) · [Notebook](notebooks/nature_inspired_feature_selection.ipynb) · [Results](results/)
@@ -125,7 +125,7 @@ nature-inspired-ids-feature-selection/
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/<your-username>/nature-inspired-ids-feature-selection.git
+git clone https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection.git
 cd nature-inspired-ids-feature-selection
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
@@ -181,7 +181,7 @@ If you use this work, please cite it (see also [`CITATION.cff`](CITATION.cff)):
             and Ant Colony Optimization},
   year   = {2026},
   note   = {MAI 650 -- Nature-Inspired Computing, Canadian University Dubai},
-  howpublished = {\url{https://github.com/<your-username>/nature-inspired-ids-feature-selection}}
+  howpublished = {\url{https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection}}
 }
 ```
 
