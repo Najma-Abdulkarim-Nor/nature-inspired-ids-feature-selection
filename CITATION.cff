@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Nature-Inspired Feature Selection for Intrusion Detection Systems: A Comparative Study of Genetic Algorithm, Particle Swarm Optimization, and Ant Colony Optimization"
+authors:
+  - family-names: Nour
+    given-names: Najma Abdulkarim
+    affiliation: Canadian University Dubai
+date-released: 2026-07-08
+license: MIT
+keywords:
+  - intrusion detection
+  - feature selection
+  - genetic algorithm
+  - particle swarm optimization
+  - ant colony optimization
+  - NSL-KDD
+  - CIC-IDS-2017
