@@ -38,7 +38,6 @@ nifs = "nifs.cli:main"
 
 [project.urls]
 Repository = "https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection"
-Paper = "https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/blob/main/docs/paper.pdf"
 
 [tool.setuptools.packages.find]
 where = ["src"]

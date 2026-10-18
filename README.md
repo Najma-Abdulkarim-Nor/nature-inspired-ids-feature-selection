@@ -16,8 +16,6 @@
 </p>
 
 <p align="center">
-  <a href="docs/paper.pdf">📄 Paper</a> ·
-  <a href="docs/presentation.pdf">📊 Slides</a> ·
   <a href="#-quick-start">🚀 Quick start</a> ·
   <a href="#-results">📈 Results</a>
 </p>
@@ -153,7 +151,6 @@ trustworthy in either mode.
 ├── tests/                 # pytest suite (runs on synthetic data, no download needed)
 ├── notebooks/             # original research notebook
 ├── results/               # published results and figures
-├── docs/                  # paper.pdf · presentation.pdf
 └── data/                  # datasets go here (not tracked by git)
 ```
 
