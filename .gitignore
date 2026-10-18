@@ -3,18 +3,21 @@ data/*
 !data/README.md
 *.zip
 
-# Generated outputs (keep curated results only)
+# Generated outputs (only the curated results/ files are tracked)
+results/paper/
 results/models/
-results/*.txt
 results/statistical_runs.csv
-results/main_results_with_baseline.csv
 
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
+build/
+dist/
 .venv/
 venv/
-env/
+.pytest_cache/
+.ruff_cache/
 .ipynb_checkpoints/
 
 # OS / editor

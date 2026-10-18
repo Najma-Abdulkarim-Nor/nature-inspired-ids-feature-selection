@@ -1,177 +1,171 @@
-<div align="center">
+<p align="center">
+  <img src="assets/banner.svg" alt="Nature-Inspired Feature Selection for Network Intrusion Detection" width="100%">
+</p>
 
-# Nature-Inspired Feature Selection for Intrusion Detection
+<p align="center">
+  <a href="https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/actions/workflows/ci.yml"><img src="https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/scikit--learn-Random%20Forest-F7931E?logo=scikitlearn&logoColor=white" alt="scikit-learn">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT"></a>
+  <a href="https://colab.research.google.com/github/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/blob/main/notebooks/nature_inspired_feature_selection.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"></a>
+</p>
 
-**A controlled comparison of Genetic Algorithm, Particle Swarm Optimization, and Ant Colony Optimization as wrapper-based feature selectors for network intrusion detection**
+<p align="center">
+  <b>Which nature-inspired algorithm finds the best features for an intrusion detection system?</b><br>
+  GA, PSO and ACO compared under one identical, reproducible protocol on NSL-KDD and CIC-IDS-2017.
+</p>
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-Random%20Forest-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](notebooks/nature_inspired_feature_selection.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/blob/main/notebooks/nature_inspired_feature_selection.ipynb)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-[Paper (PDF)](docs/paper.pdf) · [Slides (PDF)](docs/presentation.pdf) · [Notebook](notebooks/nature_inspired_feature_selection.ipynb) · [Results](results/)
-
-</div>
+<p align="center">
+  <a href="docs/paper.pdf">📄 Paper</a> ·
+  <a href="docs/presentation.pdf">📊 Slides</a> ·
+  <a href="#-quick-start">🚀 Quick start</a> ·
+  <a href="#-results">📈 Results</a>
+</p>
 
 ---
 
-## Overview
+## ✨ Highlights
 
-Machine-learning intrusion detection systems (IDS) work on network-traffic records described by
-dozens to hundreds of features, many of them redundant or irrelevant. Removing them cuts
-training and inference cost and can improve detection quality.
+- **Fair comparison.** All three algorithms use the same data, preprocessing, classifier, fitness function and metrics, so any difference comes from the search strategy alone.
+- **Up to 80 % fewer features, same or better detection.** On NSL-KDD, PSO raises the detection rate by **+9.5 points** over the all-features baseline.
+- **Written from scratch.** GA, PSO and ACO are implemented in plain NumPy, with no metaheuristic libraries, and each follows the paper's pseudocode.
+- **Reproducible.** Every run is seeded, settings live in YAML configs, one command rebuilds every table and figure, and unit tests run in CI.
 
-GA, PSO, and ACO are all popular wrapper feature selectors, but published studies usually test
-**one algorithm on one dataset** with their own preprocessing, classifier, and metrics, so the
-results cannot be compared. This project fixes that by running all three under an
-**identical experimental protocol**:
+## 📈 Results
 
-| Held constant | Setting |
+Scores on the full held-out test set (100-tree Random Forest), pilot-scale search (`configs/fast.yaml`):
+
+<table>
+<tr><th rowspan="2">Method</th><th colspan="4">NSL-KDD (122 features)</th><th colspan="4">CIC-IDS-2017 (78 features)</th></tr>
+<tr><th>Features</th><th>Detection rate</th><th>F1</th><th>FPR</th><th>Features</th><th>Detection rate</th><th>F1</th><th>FPR</th></tr>
+<tr><td>Baseline (all)</td><td>122</td><td>0.608</td><td>0.746</td><td>0.027</td><td>78</td><td>0.993</td><td>0.995</td><td>0.0006</td></tr>
+<tr><td>GA</td><td>43 <sub>(−65%)</sub></td><td>0.608</td><td>0.746</td><td>0.029</td><td>29 <sub>(−63%)</sub></td><td><b>0.996</b></td><td><b>0.997</b></td><td><b>0.0004</b></td></tr>
+<tr><td>PSO</td><td>52 <sub>(−57%)</sub></td><td><b>0.703</b></td><td><b>0.816</b></td><td><b>0.026</b></td><td>44 <sub>(−44%)</sub></td><td>0.993</td><td>0.995</td><td>0.0005</td></tr>
+<tr><td>ACO</td><td><b>25</b> <sub>(−80%)</sub></td><td>0.622</td><td>0.757</td><td>0.029</td><td><b>16</b> <sub>(−80%)</sub></td><td>0.995</td><td>0.996</td><td>0.0005</td></tr>
+</table>
+
+| | Best choice when you need… |
 |---|---|
-| Datasets | NSL-KDD and CIC-IDS-2017 (binary: normal vs. attack) |
-| Preprocessing | Median/mode imputation, one-hot encoding, min–max scaling |
-| Classifier | Random Forest (100 trees for final evaluation) |
-| Fitness | `Fitness(C) = w1 · F1(C) − w2 · |C| / n`, with `w1 = 0.9`, `w2 = 0.1` |
-| Evaluation | Accuracy, Precision, Detection Rate (Recall), F1, FPR, feature reduction, runtime |
-| Statistics | Wilcoxon rank-sum (pairwise) and Friedman (all three) tests over independent runs |
+| 🐜 **ACO** | the **smallest model**: about 80 % of features removed on both datasets |
+| 🐦 **PSO** | the **highest detection rate** on the harder NSL-KDD benchmark |
+| 🧬 **GA** | the **best all-round scores** on CIC-IDS-2017 |
 
-So any difference in the results comes from the **search strategy itself**.
+Over repeated runs, Wilcoxon signed-rank and Friedman tests found **no statistically significant
+difference** among the three algorithms at the pilot sample size (Friedman p = 0.25 on NSL-KDD,
+p = 0.55 on CIC-IDS-2017). Full numbers: [`results/main_results.csv`](results/main_results.csv).
 
-> Course project for **MAI 650 – Nature-Inspired Computing**, Canadian University Dubai.
+<p align="center">
+  <img src="results/figures/convergence_curves.png" alt="Convergence curves" width="85%">
+</p>
+<details>
+<summary><b>More figures</b>: algorithm comparison and confusion matrices</summary>
+<br>
+<img src="results/figures/algorithm_comparison.png" alt="Algorithm comparison">
+<img src="results/figures/confusion_matrices.png" alt="Confusion matrices">
+</details>
 
-## Key Results
+## 🧠 How it works
 
-Results from the pilot-scale run (`FAST_MODE = True`), evaluated on the **full held-out test set**.
-
-### NSL-KDD (122 features after one-hot encoding)
-
-| Method | Features | Reduction | Accuracy | Detection Rate | F1 | FPR |
-|---|---:|---:|---:|---:|---:|---:|
-| Baseline RF (all features) | 122 | 0.0% | 0.7649 | 0.6078 | 0.7464 | 0.0274 |
-| GA  | 43 | 64.8% | 0.7644 | 0.6077 | 0.7460 | 0.0285 |
-| **PSO** | 52 | 57.4% | **0.8194** | **0.7026** | **0.8158** | **0.0263** |
-| ACO | **25** | **79.5%** | 0.7727 | 0.6224 | 0.7571 | 0.0286 |
-
-### CIC-IDS-2017 (78 features)
-
-| Method | Features | Reduction | Accuracy | Detection Rate | F1 | FPR |
-|---|---:|---:|---:|---:|---:|---:|
-| Baseline RF (all features) | 78 | 0.0% | 0.9981 | 0.9927 | 0.9952 | 0.0006 |
-| **GA** | 29 | 62.8% | **0.9990** | **0.9964** | **0.9974** | **0.0004** |
-| PSO | 44 | 43.6% | 0.9982 | 0.9929 | 0.9953 | 0.0005 |
-| ACO | **16** | **79.5%** | 0.9985 | 0.9948 | 0.9963 | 0.0005 |
-
-### Takeaways
-
-- **Feature selection keeps or improves detection quality** while removing **43–80 %** of the features.
-- **ACO** gives the **smallest subsets** on both datasets (about 80 % reduction).
-- **PSO** gives the **best detection rate** on the harder NSL-KDD benchmark (+9.5 points over the baseline).
-- **GA** gives the best overall scores on CIC-IDS-2017.
-- Wilcoxon and Friedman tests found **no statistically significant difference** among the three
-  algorithms at the pilot sample size (Friedman p = 0.25 on NSL-KDD, p = 0.55 on CIC-IDS-2017).
-  So the right choice depends on what you need most: the smallest model, the highest detection
-  rate, or the lowest cost.
-
-### Figures
-
-| Convergence | Algorithm comparison |
-|---|---|
-| ![Convergence curves](results/figures/convergence_curves.png) | ![Algorithm comparison](results/figures/algorithm_comparison.png) |
-
-![Confusion matrices](results/figures/confusion_matrices.png)
-
-## Methodology
-
-```
- Raw data ──► Preprocessing ──► Wrapper search (GA | PSO | ACO) ──► Best feature mask ──► Final RF ──► Metrics
-                                      │                ▲
-                                      ▼                │
-                              Random Forest + k-fold CV fitness
+```mermaid
+flowchart LR
+    A[Raw traffic data] --> B[Preprocess<br/>impute · one-hot · min-max]
+    B --> C{Wrapper search}
+    C -->|GA| D[Feature mask]
+    C -->|PSO| D
+    C -->|ACO| D
+    C <-.-> E[("fitness = 0.9·F1 − 0.1·size<br/>Random Forest + k-fold CV")]
+    D --> F[Final Random Forest<br/>on full test set]
+    F --> G[Accuracy · DR · F1 · FPR<br/>reduction · runtime]
 ```
 
-| Algorithm | Encoding | Main operators |
+| Algorithm | How a feature subset is represented | How the search moves |
 |---|---|---|
-| **GA** | Binary chromosome (1 = keep feature) | Roulette-wheel selection, single-point crossover (pc = 0.8), bit-flip mutation (pm = 0.02), best-so-far tracking |
-| **PSO** | Continuous position + sigmoid binarisation | Inertia weight decaying 0.9 → 0.4, c1 = c2 = 2.0, threshold θ = 0.5 |
-| **ACO** | Node-based pheromone per feature | α = 1.0, β = 2.0, evaporation ρ = 0.1, subset size limited to 20–80 % of features |
+| **GA** | Binary chromosome (1 = keep) | Roulette-wheel selection, single-point crossover (p = 0.8), bit-flip mutation (p = 0.02) |
+| **PSO** | Continuous position, sigmoid-thresholded | Inertia decays 0.9 → 0.4, c₁ = c₂ = 2.0 |
+| **ACO** | Pheromone level per feature | τ^α·η^β sampling (α = 1, β = 2), evaporation ρ = 0.1, subset size 20–80 % |
 
-All three are **implemented from scratch** (no metaheuristic libraries), following the pseudocode
-in Section III of the [paper](docs/paper.pdf). Each one stops early when the best fitness has not
-improved for `patience` generations.
+All three stop early when the best fitness has not improved for `patience` generations.
 
-## Repository Structure
-
-```
-nature-inspired-ids-feature-selection/
-├── notebooks/
-│   └── nature_inspired_feature_selection.ipynb   # full pipeline: load → search → evaluate → plot → stats
-├── data/
-│   └── README.md                                 # how to download and place the datasets
-├── results/
-│   ├── main_results.csv                          # metrics for each dataset × method
-│   └── figures/                                  # convergence, comparison, confusion matrices
-├── docs/
-│   ├── paper.pdf                                 # full research paper
-│   └── presentation.pdf                          # presentation slides
-├── requirements.txt
-├── CITATION.cff
-├── LICENSE
-└── README.md
-```
-
-## Getting Started
-
-### 1. Clone and install
+## 🚀 Quick start
 
 ```bash
 git clone https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection.git
 cd nature-inspired-ids-feature-selection
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -e .
 ```
 
-### 2. Get the datasets
-
-The datasets are **not included** because they are too large for GitHub (about 1 GB). Follow
-[data/README.md](data/README.md) to download them into `data/`.
-
-### 3. Run
+Download the datasets into `data/` (see [data/README.md](data/README.md)), then:
 
 ```bash
-jupyter notebook notebooks/nature_inspired_feature_selection.ipynb
+nifs run                          # baseline + GA, PSO, ACO on both datasets (a few minutes)
+nifs run --datasets nsl-kdd --algorithms PSO ACO
+nifs stats                        # repeated runs + Wilcoxon / Friedman tests
+nifs run -c configs/paper.yaml    # full paper-scale settings (several hours)
 ```
 
-Then run all cells. The notebook finds out by itself whether it is running on **Google Colab**
-(it mounts Drive) or **locally** (it uses the repository root). Outputs are written to `results/`.
+Each run writes `main_results.csv`, `selected_features.json`, the config it used and all figures
+to the output folder (`results/` by default).
 
-### Configuration
+### Use it as a library
 
-The **CONFIGURATION** cell controls runtime:
+```python
+from nifs import load_dataset, make_fitness_fn, run_pso, evaluate_subset
 
-| Setting | `FAST_MODE = True` (default) | `FAST_MODE = False` (paper settings) |
-|---|---|---|
+X_train, X_test, y_train, y_test, names = load_dataset("nsl-kdd", data_dir="data")
+fitness, n = make_fitness_fn(X_train, y_train)
+result = run_pso(fitness, n, pop_size=12, n_gen=8)
+
+print([f for f, keep in zip(names, result.mask) if keep])
+print(evaluate_subset(result.mask, X_train, y_train, X_test, y_test))
+```
+
+### Prefer notebooks?
+
+[`notebooks/nature_inspired_feature_selection.ipynb`](notebooks/nature_inspired_feature_selection.ipynb)
+is the original research notebook, with all outputs saved. It runs on Google Colab or locally.
+
+## ⚙️ Configuration
+
+| Setting | `fast.yaml` | `paper.yaml` |
+|---|---:|---:|
 | Population / swarm / colony | 12 | 50 |
 | Generations / iterations | 8 | 100 |
 | CV folds in fitness | 3 | 5 |
-| RF trees during search | 40 | 100 |
-| Rows used for fitness | 6,000 subsample | full training set |
-| Independent runs for statistics | 5 | 30 |
-| Approx. runtime (CPU) | a few minutes | several hours |
+| Trees during search | 40 | 100 |
+| Training rows for fitness | 6,000 | all |
+| Runs for statistics | 5 | 30 |
 
-In both modes, the final selected subset is evaluated on the **full** test set with a
-100-tree Random Forest, so the reported metrics can be trusted in either mode.
+Both configs evaluate the final subset on the **full** test set, so the reported metrics are
+trustworthy in either mode.
 
-## Reproducibility
+## 📁 Project structure
 
-Every algorithm and the fitness function take an explicit `random_state` (default `42`).
-The statistical-validation cell uses seeds `100, 101, …`, so each run is independent and
-can still be reproduced exactly.
+```
+├── src/nifs/
+│   ├── algorithms/        # ga.py · pso.py · aco.py
+│   ├── data.py            # NSL-KDD / CIC-IDS-2017 loaders + preprocessing
+│   ├── fitness.py         # shared wrapper fitness function
+│   ├── evaluation.py      # test-set metrics
+│   ├── stats.py           # Wilcoxon + Friedman tests
+│   ├── plotting.py        # convergence, comparison, confusion-matrix figures
+│   └── cli.py             # `nifs run` / `nifs stats`
+├── configs/               # fast.yaml · paper.yaml
+├── tests/                 # pytest suite (runs on synthetic data, no download needed)
+├── notebooks/             # original research notebook
+├── results/               # published results and figures
+├── docs/                  # paper.pdf · presentation.pdf
+└── data/                  # datasets go here (not tracked by git)
+```
 
-## Citation
+## 🧪 Development
 
-If you use this work, please cite it (see also [`CITATION.cff`](CITATION.cff)):
+```bash
+pip install -e ".[dev]"
+pytest          # unit tests
+ruff check .    # lint
+```
+
+## 📚 Citation
 
 ```bibtex
 @misc{nour2026natureinspired,
@@ -181,16 +175,11 @@ If you use this work, please cite it (see also [`CITATION.cff`](CITATION.cff)):
             and Ant Colony Optimization},
   year   = {2026},
   note   = {MAI 650 -- Nature-Inspired Computing, Canadian University Dubai},
-  howpublished = {\url{https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection}}
+  url    = {https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection}
 }
 ```
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
-- **NSL-KDD** and **CIC-IDS-2017** datasets: [Canadian Institute for Cybersecurity, University of New Brunswick](https://www.unb.ca/cic/datasets/index.html).
-- Built with NumPy, pandas, scikit-learn, SciPy, and Matplotlib.
-
-## License
-
-The code is released under the [MIT License](LICENSE). The datasets are subject to their own
-terms from the Canadian Institute for Cybersecurity.
+Datasets are from the [Canadian Institute for Cybersecurity, University of New Brunswick](https://www.unb.ca/cic/datasets/index.html).
+Code is released under the [MIT License](LICENSE); the datasets keep their original terms.

@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nifs"
+version = "1.0.0"
+description = "Nature-inspired (GA, PSO, ACO) wrapper feature selection for intrusion detection"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Najma Abdulkarim Nour" }]
+keywords = [
+    "intrusion-detection", "feature-selection", "genetic-algorithm",
+    "particle-swarm-optimization", "ant-colony-optimization", "metaheuristics",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.5"]
+notebook = ["jupyter>=1.0"]
+
+[project.scripts]
+nifs = "nifs.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection"
+Paper = "https://github.com/Najma-Abdulkarim-Nor/nature-inspired-ids-feature-selection/blob/main/docs/paper.pdf"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B905"]

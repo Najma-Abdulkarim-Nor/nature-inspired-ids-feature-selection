@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="Nature-Inspired Feature Selection for Intrusion Detection">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1d2e"/>
+      <stop offset="1" stop-color="#123a4a"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" rx="16" fill="url(#bg)"/>
+  <rect width="1200" height="300" rx="16" fill="url(#grid)"/>
+
+  <!-- feature mask strip -->
+  <g transform="translate(64,236)">
+    <g fill="#5eead4">
+      <rect x="0" width="18" height="18" rx="3"/><rect x="44" width="18" height="18" rx="3"/>
+      <rect x="66" width="18" height="18" rx="3"/><rect x="132" width="18" height="18" rx="3"/>
+      <rect x="198" width="18" height="18" rx="3"/><rect x="220" width="18" height="18" rx="3"/>
+      <rect x="286" width="18" height="18" rx="3"/><rect x="352" width="18" height="18" rx="3"/>
+    </g>
+    <g fill="#ffffff" fill-opacity="0.12">
+      <rect x="22" width="18" height="18" rx="3"/><rect x="88" width="18" height="18" rx="3"/>
+      <rect x="110" width="18" height="18" rx="3"/><rect x="154" width="18" height="18" rx="3"/>
+      <rect x="176" width="18" height="18" rx="3"/><rect x="242" width="18" height="18" rx="3"/>
+      <rect x="264" width="18" height="18" rx="3"/><rect x="308" width="18" height="18" rx="3"/>
+      <rect x="330" width="18" height="18" rx="3"/>
+    </g>
+  </g>
+
+  <text x="64" y="104" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Nature-Inspired Feature Selection</text>
+  <text x="64" y="150" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="#a5f3fc">for Network Intrusion Detection</text>
+  <text x="64" y="198" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#cbd5e1">Genetic Algorithm · Particle Swarm · Ant Colony   |   NSL-KDD · CIC-IDS-2017</text>
+
+  <!-- GA: chromosome / double helix -->
+  <g transform="translate(860,70)" stroke-width="3" fill="none">
+    <path d="M20 0 C 46 15, 46 45, 20 60 C -6 75, -6 105, 20 120" stroke="#f472b6"/>
+    <path d="M20 0 C -6 15, -6 45, 20 60 C 46 75, 46 105, 20 120" stroke="#f472b6"/>
+    <g stroke="#f9a8d4" stroke-opacity="0.7">
+      <line x1="6" y1="18" x2="34" y2="18"/><line x1="1" y1="30" x2="39" y2="30"/><line x1="6" y1="42" x2="34" y2="42"/>
+      <line x1="6" y1="78" x2="34" y2="78"/><line x1="1" y1="90" x2="39" y2="90"/><line x1="6" y1="102" x2="34" y2="102"/>
+    </g>
+    <text x="20" y="160" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#f9a8d4" stroke="none">GA</text>
+  </g>
+
+  <!-- PSO: particles converging -->
+  <g transform="translate(990,130)">
+    <circle r="7" fill="#fbbf24"/>
+    <g fill="#fde68a">
+      <circle cx="-38" cy="-48" r="4"/><circle cx="40" cy="-44" r="4"/><circle cx="-46" cy="22" r="4"/>
+      <circle cx="44" cy="30" r="4"/><circle cx="2" cy="-58" r="4"/><circle cx="-6" cy="50" r="4"/>
+    </g>
+    <g stroke="#fde68a" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="3 4">
+      <line x1="-38" y1="-48" x2="-8" y2="-10"/><line x1="40" y1="-44" x2="8" y2="-10"/>
+      <line x1="-46" y1="22" x2="-9" y2="4"/><line x1="44" y1="30" x2="9" y2="5"/>
+      <line x1="2" y1="-58" x2="0" y2="-11"/><line x1="-6" y1="50" x2="-1" y2="11"/>
+    </g>
+    <text y="100" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#fde68a">PSO</text>
+  </g>
+
+  <!-- ACO: pheromone trail graph -->
+  <g transform="translate(1080,80)">
+    <g stroke="#5eead4" stroke-width="3" stroke-opacity="0.85">
+      <line x1="0" y1="0" x2="50" y2="30"/><line x1="50" y1="30" x2="20" y2="80"/>
+      <line x1="20" y1="80" x2="70" y2="110"/>
+    </g>
+    <g stroke="#5eead4" stroke-width="1.5" stroke-opacity="0.3">
+      <line x1="0" y1="0" x2="20" y2="80"/><line x1="50" y1="30" x2="70" y2="110"/>
+    </g>
+    <g fill="#99f6e4">
+      <circle cx="0" cy="0" r="6"/><circle cx="50" cy="30" r="6"/>
+      <circle cx="20" cy="80" r="6"/><circle cx="70" cy="110" r="6"/>
+    </g>
+    <text x="35" y="150" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#99f6e4">ACO</text>
+  </g>
+</svg>

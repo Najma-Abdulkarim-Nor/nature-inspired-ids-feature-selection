@@ -1,0 +1,21 @@
+# Pilot-scale settings: all 3 algorithms x 2 datasets finish in minutes on a CPU.
+# The selected subsets are still scored on the FULL test set with a 100-tree forest.
+datasets: [nsl-kdd, cic-ids-2017]
+algorithms: [GA, PSO, ACO]
+data_dir: data
+output_dir: results
+
+pop_size: 12          # population / swarm / colony size
+n_gen: 8              # generations / iterations
+patience: 6           # stop after this many generations without improvement
+
+cv_folds: 3           # CV folds inside the fitness function
+rf_trees_search: 40   # forest size used during the search
+subsample_rows: 6000  # training rows used to compute fitness
+w1: 0.9               # weight on F1
+w2: 0.1               # weight on subset-size penalty
+
+rf_trees_final: 100   # forest size for final evaluation
+n_stat_runs: 5        # independent runs for `nifs stats`
+cic_row_cap: 150000   # stratified cap on CIC-IDS-2017 rows
+random_state: 42

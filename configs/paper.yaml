@@ -1,0 +1,20 @@
+# Full-scale settings from the paper (Tables II-IV). Expect several hours on a CPU.
+datasets: [nsl-kdd, cic-ids-2017]
+algorithms: [GA, PSO, ACO]
+data_dir: data
+output_dir: results/paper
+
+pop_size: 50
+n_gen: 100
+patience: 6
+
+cv_folds: 5
+rf_trees_search: 100
+subsample_rows: null  # use the full training set
+w1: 0.9
+w2: 0.1
+
+rf_trees_final: 100
+n_stat_runs: 30
+cic_row_cap: 150000
+random_state: 42
